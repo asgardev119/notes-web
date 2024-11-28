@@ -8,7 +8,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentNote, setCurrentNote] = useState(null);
 
- const [notes, setNotes] = useState(() => {
+  const [notes, setNotes] = useState(() => {
     const storedNotes = localStorage.getItem("notes");
     return storedNotes ? JSON.parse(storedNotes) : []; // Load existing notes or use an empty array
   });
@@ -16,7 +16,6 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
-
 
   const handleSaveNote = (note) => {
     if (note.id) {

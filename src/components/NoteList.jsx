@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 const NoteList = ({ notes, onSelectNote, onDeleteNote }) => {
+  const getCurrentDateTime = () => {
+    const currentDate = new Date();
 
+    return `${currentDate.toLocaleDateString()}`;
+  };
 
-  
   return (
     <div className="space-y-2 ">
       {notes.map((note) => (
@@ -17,8 +20,11 @@ const NoteList = ({ notes, onSelectNote, onDeleteNote }) => {
             <h3 className="text-lg font-semibold text-gray-800">
               {note.title}
             </h3>
-            <p className="text-gray-600 truncate">............</p>
-            {/* {note.content} */}
+            <p className="text-sm text-gray-500">{getCurrentDateTime()}</p>
+
+            {note.content.length > 25
+              ? note.content.slice(0, 25) + "..."
+              : note.content}
           </div>
           <button
             className=" ml-5 bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 "
